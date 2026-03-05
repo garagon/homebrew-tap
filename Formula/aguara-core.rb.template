@@ -1,0 +1,32 @@
+# Template for homebrew-core submission
+# Submit via: brew bump-formula-pr --url=<tarball_url> --sha256=<sha>
+# Or manually via PR to https://github.com/Homebrew/homebrew-core
+
+class Aguara < Formula
+  desc "Security scanner for AI agent skills and MCP servers"
+  homepage "https://github.com/garagon/aguara"
+  url "https://github.com/garagon/aguara/archive/refs/tags/v0.6.0.tar.gz"
+  # sha256 "<source tarball sha256 — compute with: curl -sL <url> | shasum -a 256>"
+  license "Apache-2.0"
+  head "https://github.com/garagon/aguara.git", branch: "main"
+
+  depends_on "go" => :build
+
+  def install
+    ldflags = %W[
+      -s -w
+      -X github.com/garagon/aguara/cmd/aguara/commands.Version=#{version}
+      -X github.com/garagon/aguara/cmd/aguara/commands.Commit=#{tap.user}
+    ]
+    system "go", "build", *std_go_args(ldflags:), "./cmd/aguara"
+  end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/aguara version")
+
+    # Test scanning a benign file
+    (testpath/"test.md").write("# Hello World\nThis is a safe document.")
+    output = shell_output("#{bin}/aguara scan #{testpath}/test.md --format json")
+    assert_match '"total_findings":0', output
+  end
+end
