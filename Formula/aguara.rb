@@ -5,21 +5,21 @@
 class Aguara < Formula
   desc "Security scanner for AI agent skills and MCP servers"
   homepage "https://github.com/garagon/aguara"
-  version "0.23.0"
+  version "0.24.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/garagon/aguara/releases/download/v0.23.0/aguara_0.23.0_darwin_amd64.tar.gz"
-      sha256 "8c3602d43df7cccfa0f04e0e887d4cee8857eeefa1fa50b6ba591cd91425099a"
+      url "https://github.com/garagon/aguara/releases/download/v0.24.0/aguara_0.24.0_darwin_amd64.tar.gz"
+      sha256 "4c5e5f96bb4d33bd986eff00c36207dc81e4f68f016a5c58eb5a5ee9f46c3c26"
 
       define_method(:install) do
         bin.install "aguara"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/garagon/aguara/releases/download/v0.23.0/aguara_0.23.0_darwin_arm64.tar.gz"
-      sha256 "0ada9bb088d747a35aad15572bb7cccde7b96c7a762eaefed371d08e0b12bcea"
+      url "https://github.com/garagon/aguara/releases/download/v0.24.0/aguara_0.24.0_darwin_arm64.tar.gz"
+      sha256 "47c1afaece755626129949906ef69d082d5324b46727b30c91e580128078cae4"
 
       define_method(:install) do
         bin.install "aguara"
@@ -29,15 +29,15 @@ class Aguara < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/garagon/aguara/releases/download/v0.23.0/aguara_0.23.0_linux_amd64.tar.gz"
-      sha256 "d53ef5e7bf6235277d05c9716ba7f24cfa0a881324428e441008162c2d1dbe54"
+      url "https://github.com/garagon/aguara/releases/download/v0.24.0/aguara_0.24.0_linux_amd64.tar.gz"
+      sha256 "daa8aca38290a490a88ce2cd27f76ab63d50412f3d93930ab24f0a585c97c9fd"
       define_method(:install) do
         bin.install "aguara"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/garagon/aguara/releases/download/v0.23.0/aguara_0.23.0_linux_arm64.tar.gz"
-      sha256 "028e497cefe71646fbe700f4c5b1614dbe2a80792bc0c69e9b4048a80846d2d4"
+      url "https://github.com/garagon/aguara/releases/download/v0.24.0/aguara_0.24.0_linux_arm64.tar.gz"
+      sha256 "8c25e13534d213309dd0687c851e785532c64644de70ce532e3c3124256aad5f"
       define_method(:install) do
         bin.install "aguara"
       end
